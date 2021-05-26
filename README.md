@@ -2,7 +2,9 @@
 
 ## XMLHTTTPRequest in JavaScript
 - Basic and getting staring with jQuery:grinning:
-<br>
 
+&nbsp;
+
+&nbsp;
 ## And some my working stuffs for my PHP projects 
 - like some db conn , ajax with post method 
