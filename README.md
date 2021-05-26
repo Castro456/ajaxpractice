@@ -5,4 +5,4 @@
 <br>
 <br>
 ## And some my working stuffs for my PHP projects 
-<p> like some db conn , ajax with post method </p>
+- like some db conn , ajax with post method 
