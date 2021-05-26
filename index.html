@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax basic</title>
+</head>
+<body>
+    <button id="abc">Click Me</button>
+    <div id="text"></div>
+    <script>
+        document.getElementById("abc").addEventListener("click",loadText);
+        function loadText() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET','sample.txt',true);
+            console.log("ReadyStatus:",xhr.readyState);
+            xhr.onload = function () {
+            console.log("ReadyStatus:",xhr.readyState);
+            if (this.status == 200) {
+                    console.log(this.responseText);
+                    document.getElementById("text").innerHTML = this.responseText;
+                }
+
+                }
+            xhr.onerror = function () {
+                console.log("error");
+            }
+            
+        // xhr.onreadystatechange = function () {
+        //     console.log("ReadyStatus:",xhr.readyState);
+        //     if (this.readyState == 4 && this.status == 200) {
+        //         console.log(this.responseText);
+        //         }
+        //     }
+        xhr.send();
+        }
+    </script>
+</body>
+</html>

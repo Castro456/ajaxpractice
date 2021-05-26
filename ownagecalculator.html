@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Own Age Calculating</title>
+</head>
+
+<body>
+  <input type="date" name="date" id="date">
+  <input type="text" name="age" id="age">
+  <button onclick="calculateAge()">Calculate</button>
+</body>
+<script src="./jquery.js"></script>
+<script>
+
+
+  function calculateAge() {
+    var userinput = document.getElementById("date").value;
+    var dob = new Date(userinput);
+    console.log(dob);
+    //calculate month difference from current date in time
+    var month_diff = Date.now() - dob.getTime();
+
+    //convert the calculated difference in date format
+    var age_dt = new Date(month_diff);
+
+    //extract year from date    
+    var year = age_dt.getUTCFullYear();
+
+    //now calculate the age of the user
+    var age = Math.abs(year - 1970);
+
+    //display the calculated age
+    // return document.getElementById("result").innerHTML =  
+    //          "Age is: " + age + " years. ";
+    document.getElementById('age').value = age;
+  }
+</script>
+
+</html>

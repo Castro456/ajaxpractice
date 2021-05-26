@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get method in Ajax</title>
+</head>
+<body>
+    <div class="container">
+
+    </div>
+    <button>Click</button>
+<script src="./jquery.js"></script>
+<script>
+    $("button").click(function(){
+        $.get("user.json",
+    {
+
+    },
+    function(result){
+        console.log("Success",result)
+    }
+    );
+    $(".container").load("print.html");
+    });
+
+</script>
+</body>
+</html>

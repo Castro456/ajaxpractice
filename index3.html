@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">Click</button>
+    <hr>
+    <h1>GET Method</h1>
+    <form action="process.php" method="get" id="getform">
+        <input type="text" name="pname" id="jname">
+        <input type="submit" id="btn1" value="Submit">
+    </form>
+
+    <hr>
+    <h1>POST Method</h1>
+    <form action="process.php" method="post" id="postform">
+        <div id="display"></div>
+        <input type="text" name="postname" id="namepost">
+        <input type="submit" id="btn2" value="Submit">
+    </form>
+
+    <script>
+        // document.getElementById("btn").addEventListener("click",langphp);
+        document.getElementById("getform").addEventListener("submit",langphp);
+        document.getElementById("postform").addEventListener("submit",langpost);
+        function langphp(e){
+        e.preventDefault();
+        var name = document.getElementById("jname").value;
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET","process.php?pname="+name,true);
+        xhr.onload = function(){
+            console.log(this.responseText);
+        }
+        xhr.send();
+        }
+
+
+        function langpost(e){
+        e.preventDefault();
+        var name = document.getElementById("namepost").value;
+        var pro="postname="+name;
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST","process.php",true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onload = function(){
+            alert(this.responseText);
+            document.getElementById("display").innerHTML = this.responseText;
+            console.log(this.responseText);
+        }
+        xhr.send(pro);
+        }
+    </script>
+</body>
+</html>

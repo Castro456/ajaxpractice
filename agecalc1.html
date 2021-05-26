@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculate</title>
+    <link rel="stylesheet" type="text/css" href="pikaday.css">
+</head>
+<body>
+    <div ><label for="birth_date">Birth Date: </label>
+        <input type="text" class='datepicker' id="birth_date" readonly></div>
+      <div id="age" style="padding-top:2em;"></div>
+<style>
+    body{
+  font-family: sans-serif, Arial;
+}
+</style>
+<script src="./pikaday.js"></script>
+<script>
+
+// jQuery(document).ready( function($){
+//     var $datepicker = $('.datepicker').pikaday({
+//        firstDay: 1,
+//        minDate: new Date('2000-01-01'),
+//        maxDate: new Date('2020-12-31'),
+//        yearRange: [2000,2020]
+//     }); 
+
+//     $datepicker.pikaday('show');
+// });
+
+    function calculateAge(date) 
+{
+  const now = new Date();
+  const diff = Math.abs(now - date );
+  const age = Math.floor(diff / (1000 * 60 * 60 * 24 * 365)); 
+  return age
+}
+
+var picker = new Pikaday({ 
+  field: document.getElementById('birth_date') ,
+  yearRange:[1900,2020],
+  onSelect: function(date) {
+  let age = calculateAge(date);
+  document.getElementById('age').innerHTML = "age: "+age ;
+  }                        
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Ajax</title>
+</head>
+<body>
+    
+    <button id="btn">View</button>
+    <div id="viewdb"></div>
+    <script>
+        document.getElementById("btn").addEventListener("click",view);
+        function view(e){
+        e.preventDefault();
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST","names.php",true);
+        xhr.onload = function(){
+                var names = JSON.parse(this.responseText);
+                var output="";
+                for(var i in names){
+                    output +=
+                    '<div class="gitusers">'+
+                    '<ul>'+
+                    '<li> ID:'+names[i].id+'</li>'+
+                    '<li> Task:'+names[i].task+'</li>'+
+                    '<li> Status:'+names[i].progress+'</li>'+
+                    '</ul>'+
+                    '</div>';
+                }
+                document.getElementById("viewdb").innerHTML = output;
+
+            
+        }
+        xhr.send();
+        }
+    </script>
+</body>
+</html>

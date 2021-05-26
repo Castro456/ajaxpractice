@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Each</title>
+</head>
+<body>
+    <ul>
+        <li><a href="http://www.google.com">Google</a></li>
+        <li><a href="http://www.youtube.com">YouTube</a></li>
+    </ul>
+  <script src="./jquery.js"></script>
+  <script>
+      $("li").each(function (index, element){
+          console.log($(this).text());
+      });
+
+      var names =["zac","rac"];
+      var exp = $.map(
+          names,
+          function(perName,perIndex){
+              return (perName.split(""));
+          }
+      );
+      console.log(exp);
+    //   var sum =0;
+    //   var obj={
+    //       foo : 1,
+    //       bar : 2,
+    //       baz : 3
+    //   }
+    //   $.each(obj,function(key,value){
+    //       console.log("key:",key);
+    //       console.log("Value:",value);
+    //       sum += value;
+    //   });
+    //   alert(sum);
+  </script>  
+</body>
+</html>

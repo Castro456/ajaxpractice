@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>agecaltry</title>
+</head>
+
+<body>
+  <div class="input_rv cal">
+    <input type="text" id="dob">
+    <img class="ui-datepicker-trigger" src="./resources/images/calender_icon.jpg" alt="..." title="...">
+    <input type="text" id="age">
+  </div>
+</body>
+<script>
+  function GetAge() {
+    var dob = $('#dob').val();
+    if (dob != '') {
+      dob = new Date(dob);
+      var today = new Date();
+      var age = Math.floor((today - dob) / (365.25 * 24 * 60 * 60 * 1000));
+      alert(age);
+      $('#age').val(age + ' years old');
+    }
+  }
+
+  $(document).ready(function () {
+    $("#dob").datepicker().datepicker("setDate", new Date());
+    GetAge();
+    var age = "";
+    $('#dob').on("change", function () {
+      GetAge();
+    });
+
+  })
+</script>
+
+</html>

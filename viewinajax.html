@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View using jQuery</title>
+</head>
+<body>
+<div id="container">
+<table>
+<thead>
+<tr>
+<th colspan="7" ><h1>Tasks</h1></th>
+</tr>
+<tr>
+  <th scope="col">#</th>
+  <th scope="col">Task</th>
+  <th scope="col">Date</th>
+  <th scope="col">User</th> 
+  <th scope="col">Status</th>
+</tr>
+</thead>
+<tbody id="table">
+ 
+</tbody>
+</div>
+<!-- <button id="del">Check Delete</button> -->
+<script src="./jquery.js"></script>
+<script>
+  $(document).ready(function(){
+    $.ajax({
+    url:"viewfullphp.php",
+    type:"POST",
+    success:function(result){
+          $("#table").html(result);
+    }
+  });
+
+
+  $(document).on("click",".delete", function(){
+    console.log($(this).attr("value"));
+    return false;
+    $.ajax({
+    url:"viewdelete.php",
+    type:"POST",
+    data:{
+      delete: $(this).val()
+      //.attr("value")
+    },
+    success:function(result){
+          alert(result);
+    }
+  });
+  });
+
+  });
+
+</script>
+</body>
+</html>

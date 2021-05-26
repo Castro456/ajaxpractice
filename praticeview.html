@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View</title>
+</head>
+<body>
+    <button id="view">Click </button>
+    <div id="display">
+
+    </div>
+<script>
+            document.getElementById("view").addEventListener("click",loadtable);
+        function loadtable() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET','view.php',true);
+            console.log("ReadyStatus:",xhr.readyState);
+            xhr.onload = function () {
+            console.log("ReadyStatus:",xhr.readyState);
+            if (this.status == 200) {
+                    
+                    document.getElementById("display").innerHTML = this.responseText;
+                }
+
+                }
+            xhr.onerror = function () {
+                console.log("error");
+            }
+        xhr.send();
+        }
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>View Ajax</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+<h2>View data</h2>
+<div class="alert alert-success alert-dismissible" id="success" style="display:none;">
+<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+</div>
+<table class="table table-bordered table-sm" >
+<thead>
+<tr>
+<th>Task</th>
+<th>Time</th>
+<th>Progress</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="table">
+
+</tbody>
+</table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+		  <div class="form-group">
+			  <label>Task</label>
+			  <input type="text" id="task" class="form-control">
+		  </div>
+		  <input type="hidden" id="userid" class="form-control">
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		  <button type="button" id="save" class="btn btn-primary">Save changes</button>
+		</div>
+	  </div>
+	</div>
+  </div>
+
+<script>
+$(document).ready(function() {
+	$.ajax({
+		url: "viewupdate.php",
+		type: "POST",
+		cache: false,
+		success: function(dataResult){
+			$('#table').html(dataResult); 
+		}
+	});
+
+$(document).on("click","button[data-role=update]",function(){
+		var id=($(this).data('id'));
+		var task = $('#'+id).children("td[data-target=task]").text();
+		$("#task").val(task);
+		$("#userid").val(id);
+		$("#mymodal").modal("toggle");
+});
+
+$("#save").click(function(){
+	var id= $("#userid").val();
+	var task= $("#task").val();
+	$.ajax({
+		url: 'updateajax.php',
+		method: 'post',
+		data:{task:task , id:id},
+		success: function(response){
+			console.log(response);
+		$("#mymodal").modal("toggle");
+		location.reload();
+		}
+	})
+});
+
+});
+</script>
+</body>
+</html>

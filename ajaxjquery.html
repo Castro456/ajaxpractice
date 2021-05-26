@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax</title>
+</head>
+<body>
+    <button>Click me</button>
+<script src="./jquery.js"></script>
+<script>
+    $("button").click(function(){
+        $.ajax({
+            url:"user.json",
+            type:"GET",
+            dataType:"json",
+            timeout:2500,
+            success:function(result){
+                console.log("Here is the data",result);
+            },
+            error:function(result){
+                console.log("Error is Occured");
+            },
+            complete:function(result){
+                console.log("Completed");
+            }
+
+        });
+    });
+</script>
+</body>
+</html>
