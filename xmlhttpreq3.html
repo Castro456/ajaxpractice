@@ -41,8 +41,8 @@
     }
 
 
-    function langpost(){
-    e.preventDefault();
+    function langpost(e){
+    e.preventDefault(); // To prevent from going to process.php page
     var name = document.getElementById("namepost").value;
     var name1 = document.getElementById("namepost1").value;
     var pro="postname="+name+"&"; // This & symbol in here is very important, only this can take multiple data's in post request.
