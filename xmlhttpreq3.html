@@ -19,39 +19,46 @@
     <form action="process.php" method="post" id="postform">
         <div id="display"></div>
         <input type="text" name="postname" id="namepost">
+        <br>
+        <br>
+        <input type="text" name="postname1" id="namepost1">
         <input type="submit" id="btn2" value="Submit">
     </form>
 
     <script>
         // document.getElementById("btn").addEventListener("click",langphp);
-        document.getElementById("getform").addEventListener("submit",langphp);
-        document.getElementById("postform").addEventListener("submit",langpost);
-        function langphp(e){
-        e.preventDefault();
-        var name = document.getElementById("jname").value;
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET","process.php?pname="+name,true);
-        xhr.onload = function(){
-            console.log(this.responseText);
-        }
-        xhr.send();
-        }
+    document.getElementById("getform").addEventListener("submit",langphp);
+    document.getElementById("postform").addEventListener("submit",langpost);
+    function langphp(e){
+    e.preventDefault();
+    var name = document.getElementById("jname").value;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET","process.php?pname="+name,true);
+    xhr.onload = function(){
+        console.log(this.responseText);
+    }
+    xhr.send();
+    }
 
 
-        function langpost(e){
-        e.preventDefault();
-        var name = document.getElementById("namepost").value;
-        var pro="postname="+name;
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST","process.php",true);
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.onload = function(){
-            alert(this.responseText);
-            document.getElementById("display").innerHTML = this.responseText;
-            console.log(this.responseText);
-        }
-        xhr.send(pro);
-        }
+    function langpost(){
+    e.preventDefault();
+    var name = document.getElementById("namepost").value;
+    var name1 = document.getElementById("namepost1").value;
+    var pro="postname="+name+"&"; // This & symbol in here is very important, only this can take multiple data's in post request.
+    var pro1="postname1="+name1;
+    var result = pro + pro1; // Concatenation is done so that sending the data in single variable is possible
+    console.log(result);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST","process.php",true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.onload = function(){
+        alert(this.responseText);
+        document.getElementById("display").innerHTML = this.responseText;
+        console.log(this.responseText);
+    }
+    xhr.send(result);
+    }
     </script>
 </body>
 </html>
