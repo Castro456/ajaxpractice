@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traversing the DOM</title>
+</head>
+<body>
+  <p>Working on jquery</p>
+  <ul class="fruits"> Fruits
+    <li id="app">Apple</li>
+    <li>Pineapple</li>
+    <li id="app1">Guava</li>
+    <li class="between">
+      <ul>
+        <li class="bana">Banana</li>
+      </ul>
+    </li>
+    <li>Grapes</li>
+    <li>Pomegranate</li>
+  </ul>
+  <ul class="phones">
+    <li id="soft">OnePlus</li>
+     <li class="but">
+      <ul>
+        <li>Realme</li>
+      </ul>
+    </li>
+    <li >Samsung</li>
+  </ul>
+<script src="./jquery.js"></script>
+<script>
+  $(document).ready(function() {
+    // $(".fruits li:last").css("color","red");
+    console.log($("li:first").siblings().css("color","red"));
+  })
+</script>
+</body>
+</html>
